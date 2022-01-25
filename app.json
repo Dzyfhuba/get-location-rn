@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "presence-system-with-api",
+    "slug": "presence-system-with-api",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "presence-system-with-api"
+}

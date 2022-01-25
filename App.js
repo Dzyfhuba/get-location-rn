@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
 import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
 
 export default class App extends React.Component {
   state = {
@@ -10,16 +9,11 @@ export default class App extends React.Component {
     errorMessage: ""
   }
   componentDidMount() {
-    this.getLocationAsync()
+    this.interval = setInterval(() => {
+      this.getLocationAsync()
+    }, 100);
   }
   getLocationAsync = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
-    }
-
     let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.BestForNavigation });
     const { latitude, longitude } = location.coords
     this.getGeocodeAsync({ latitude, longitude })
